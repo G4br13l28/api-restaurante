@@ -13,7 +13,6 @@ Laravel Lumen is a stunningly fast PHP micro-framework for building web applicat
 
 Este repositorio contiene un proyecto de API construido con el framework Lumen de Laravel. La API proporciona endpoints para manejar las entidades de usuarios, restaurantes, pedidos, detalle de pedidos y platos. Además, cuenta con documentación Swagger accesible en la ruta `/api/documentation`.
 
-¡Disfruta utilizando la API y no dudes en contactarnos si tienes alguna pregunta o comentario!
 
 
 
@@ -73,30 +72,76 @@ La API ahora estará accesible en http://localhost:8000.
 
 
 ## API Reference
+Ejemplo de request para las diferentes endpoints
 
-#### Get all items
+#### Obtener todos los restaurantes
 
 ```http
-  GET /api/items
+  GET /restaurantes
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
 
-#### Get item
+#### Obtener restaurante por id
 
 ```http
-  GET /api/items/${id}
+  GET /restaurantes/${id}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+| `id`      | `string` | **Required**. Id del restaurante |
 
-#### add(num1, num2)
 
-Takes two numbers and returns the sum.
+#### Crear un nuevo restaurante
+```http
+  POST /restaurantes
+```
+Body request en formato json
+
+```json
+{
+  "ruc": "<string>",
+  "nombre": "<string>",
+  "direccion": "<string>",
+  "telefono": "<string>",
+  "email": "<string>",
+  "categoria": "<string>"
+}
+```
+#### Actualizar un restaurante
+
+```http
+  PUT /restaurantes/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id del restaurante |
+
+Body request en formato json
+
+```json
+{    
+  "ruc": "<string>",
+  "nombre": "<string>",
+  "direccion": "<string>",
+  "telefono": "<string>",
+  "email": "<string>",
+  "categoria": "<string>"
+}
+```
+#### Eliminar un restaurante
+
+```http
+  DELETE /restaurantes/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id del restaurante |
+
+
+
 
 
 ## Documentación Swagger
@@ -105,5 +150,4 @@ La documentación Swagger de la API está disponible en la ruta `/api/documentat
 ## Authors
 
 - [@yo para mi deber](https://www.github.com/nobuscar)
-
 
