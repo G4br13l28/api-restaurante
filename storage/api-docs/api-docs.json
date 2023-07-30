@@ -1,0 +1,1111 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Restaurantes API",
+        "contact": {
+            "url": "",
+            "email": ""
+        },
+        "license": {
+            "name": "Deber de Programacion Web"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/example": {
+            "get": {
+                "operationId": "4493760b2b53194c2e721e06c0bbe5cf",
+                "responses": {
+                    "200": {
+                        "description": "An example endpoint"
+                    }
+                }
+            }
+        },
+        "/pedidos": {
+            "get": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Lista de pedidos",
+                "operationId": "listPedidos",
+                "responses": {
+                    "200": {
+                        "description": "Un array de pedidos",
+                        "headers": {
+                            "x-next": {
+                                "description": "A link to the next page of responses",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PedidosSchema"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Crear un pedido",
+                "operationId": "createPedido",
+                "requestBody": {
+                    "description": "Datos del pedido",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PedidosSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un pedido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PedidosSchema"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pedidos/{id}": {
+            "get": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Obtener pedido por id",
+                "operationId": "getPedidoById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del pedido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtener un pedido por su ID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PedidosSchema"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Actualizar un pedido",
+                "operationId": "updatePedido",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del pedido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Datos del pedido",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PedidosSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un pedido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PedidosSchema"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Eliminar un pedido",
+                "operationId": "deletePedido",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del pedido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Un pedido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pedidos"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/platos": {
+            "get": {
+                "tags": [
+                    "platos"
+                ],
+                "summary": "Obtener lista de platos",
+                "operationId": "getPlatosList",
+                "responses": {
+                    "200": {
+                        "description": "Lista de platos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Platos"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "platos"
+                ],
+                "summary": "Crear un nuevo plato",
+                "operationId": "createPlato",
+                "requestBody": {
+                    "description": "Datos del plato",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Platos"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un plato",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Platos"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/platos/{id}": {
+            "get": {
+                "tags": [
+                    "platos"
+                ],
+                "summary": "Obtener plato por id",
+                "operationId": "getPlatoById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del plato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Un plato"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "platos"
+                ],
+                "summary": "Actualizar un plato",
+                "operationId": "updatePlato",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del plato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Datos del plato",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Platos"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un plato",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Platos"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "platos"
+                ],
+                "summary": "Eliminar un plato",
+                "operationId": "deletePlato",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del plato",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Un plato",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Platos"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/restaurantes": {
+            "get": {
+                "tags": [
+                    "restaurantes"
+                ],
+                "summary": "Lista de restaurantes",
+                "operationId": "listRestaurantes",
+                "responses": {
+                    "200": {
+                        "description": "Un array de restaurantes",
+                        "headers": {
+                            "x-next": {
+                                "description": "A link to the next page of responses",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Restaurantes"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "restaurantes"
+                ],
+                "summary": "Crear un restaurante",
+                "operationId": "createRestaurante",
+                "requestBody": {
+                    "description": "Datos del restaurante",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Restaurantes"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un restaurante"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/restaurantes/{id}": {
+            "get": {
+                "tags": [
+                    "restaurantes"
+                ],
+                "summary": "Obtener restaurante por id",
+                "operationId": "getRestauranteById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del restaurante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Un restaurante"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "restaurantes"
+                ],
+                "summary": "Actualizar un restaurante",
+                "operationId": "updateRestaurante",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del restaurante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Datos del restaurante",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Restaurantes"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un restaurante"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "restaurantes"
+                ],
+                "summary": "Eliminar un restaurante",
+                "operationId": "deleteRestaurante",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del restaurante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Un restaurante"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/usuarios": {
+            "get": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Lista de usuarios",
+                "operationId": "listUsuarios",
+                "responses": {
+                    "200": {
+                        "description": "Un array de usuarios",
+                        "headers": {
+                            "x-next": {
+                                "description": "A link to the next page of responses",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Usuarios"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Crear un usuario",
+                "operationId": "createUsuario",
+                "requestBody": {
+                    "description": "Usuario a crear",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Usuarios"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Usuarios"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/usuarios/{id}": {
+            "get": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Obtener usuario por id",
+                "operationId": "getUsuarioById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Un usuario"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Actualizar un usuario",
+                "operationId": "updateUsuario",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Usuario a actualizar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Usuarios"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Usuarios"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Eliminar un usuario",
+                "operationId": "deleteUsuario",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Un usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Usuarios"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "DetallePedidosSchema": {
+                "title": "DetallePedidos",
+                "description": "Detalle del pedido",
+                "properties": {
+                    "id_pedido": {
+                        "description": "ID del pedido",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id_plato": {
+                        "description": "ID del plato",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "cantidad": {
+                        "description": "Cantidad",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "total": {
+                        "description": "Total",
+                        "type": "integer",
+                        "example": "10"
+                    }
+                },
+                "type": "object"
+            },
+            "Error": {
+                "title": "Error",
+                "description": "Error",
+                "properties": {
+                    "code": {
+                        "description": "Codigo de error",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 400
+                    },
+                    "message": {
+                        "description": "Mensaje de error",
+                        "type": "string",
+                        "example": "Error de validacion"
+                    },
+                    "errors": {
+                        "description": "Errores",
+                        "type": "array",
+                        "items": {
+                            "description": "Error",
+                            "type": "string",
+                            "example": "El campo nombre es requerido"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Pedidos": {
+                "title": "Pedidos",
+                "description": "Pedidos",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id_usuario": {
+                        "description": "ID del usuario",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id_restaurante": {
+                        "description": "ID del restaurante",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "cantidad": {
+                        "description": "Cantidad",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "precio": {
+                        "description": "Precio",
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "fecha": {
+                        "description": "Fecha",
+                        "type": "string",
+                        "example": "2021-01-01"
+                    },
+                    "estado": {
+                        "description": "Estado",
+                        "type": "string",
+                        "example": "Pendiente"
+                    }
+                },
+                "type": "object"
+            },
+            "PedidosSchema": {
+                "title": "Pedidos",
+                "description": "Detalle del pedido",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 1
+                    },
+                    "id_usuario": {
+                        "description": "ID del usuario",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 1
+                    },
+                    "id_restaurante": {
+                        "description": "ID del restaurante",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 1
+                    },
+                    "Estado": {
+                        "description": "Estado del pedido",
+                        "type": "string",
+                        "example": "Pendiente"
+                    },
+                    "Fecha": {
+                        "description": "Fecha del pedido",
+                        "type": "date",
+                        "example": "2021-01-01"
+                    },
+                    "Total": {
+                        "description": "Total del pedido",
+                        "type": "decimal",
+                        "format": "decimal",
+                        "example": 10
+                    },
+                    "detalle": {
+                        "description": "Detalle del pedido",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id_pedido": {
+                                    "description": "ID del pedido",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1
+                                },
+                                "id_plato": {
+                                    "description": "ID del plato",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1
+                                },
+                                "cantidad": {
+                                    "description": "Cantidad",
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1
+                                },
+                                "total": {
+                                    "description": "Total del plato",
+                                    "type": "decimal",
+                                    "format": "decimal",
+                                    "example": 10
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Platos": {
+                "title": "Platos",
+                "description": "Platos",
+                "properties": {
+                    "nombre": {
+                        "description": "Nombre",
+                        "type": "string",
+                        "example": "Plato 1"
+                    },
+                    "precio": {
+                        "description": "Precio",
+                        "type": "string",
+                        "example": "10.00"
+                    },
+                    "descripcion": {
+                        "description": "Descripcion",
+                        "type": "string",
+                        "example": "Descripcion del plato 1"
+                    },
+                    "id_restaurante": {
+                        "description": "ID del restaurante",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "Restaurantes": {
+                "title": "Restaurantes",
+                "description": "Restaurantes",
+                "properties": {
+                    "ruc": {
+                        "description": "RUC",
+                        "type": "string",
+                        "example": "12345678901"
+                    },
+                    "nombre": {
+                        "description": "Nombre",
+                        "type": "string",
+                        "example": "Restaurante 1"
+                    },
+                    "direccion": {
+                        "description": "Direccion",
+                        "type": "string",
+                        "example": "Av. Los Olivos 123"
+                    },
+                    "telefono": {
+                        "description": "Telefono",
+                        "type": "string",
+                        "example": "987654321"
+                    },
+                    "email": {
+                        "description": "Email",
+                        "type": "string",
+                        "example": "restaurante@email.com"
+                    },
+                    "categoria": {
+                        "description": "Categoria",
+                        "type": "string",
+                        "example": "Comida rapida"
+                    }
+                },
+                "type": "object"
+            },
+            "Usuarios": {
+                "title": "Usuarios",
+                "description": "Usuarios",
+                "properties": {
+                    "dni": {
+                        "description": "DNI",
+                        "type": "string",
+                        "example": "12345678"
+                    },
+                    "nombres": {
+                        "description": "Nombres",
+                        "type": "string",
+                        "example": "Juan"
+                    },
+                    "apellidos": {
+                        "description": "Apellidos",
+                        "type": "string",
+                        "example": "Perez"
+                    },
+                    "email": {
+                        "description": "Email",
+                        "type": "string",
+                        "example": "juanp.2@mail.com"
+                    },
+                    "telefono": {
+                        "description": "Telefono",
+                        "type": "string",
+                        "example": "987654321"
+                    },
+                    "direccion": {
+                        "description": "Direccion",
+                        "type": "string",
+                        "example": "Av. Los Olivos 123"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
