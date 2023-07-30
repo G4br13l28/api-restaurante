@@ -9,18 +9,101 @@ Laravel Lumen is a stunningly fast PHP micro-framework for building web applicat
 
 > **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
 
-## Official Documentation
+# Proyecto de Lumen - Restaurante API
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Este repositorio contiene un proyecto de API construido con el framework Lumen de Laravel. La API proporciona endpoints para manejar las entidades de usuarios, restaurantes, pedidos, detalle de pedidos y platos. Además, cuenta con documentación Swagger accesible en la ruta `/api/documentation`.
 
-## Contributing
+¡Disfruta utilizando la API y no dudes en contactarnos si tienes alguna pregunta o comentario!
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## Instrucciones para abrir el proyecto
+Para ejecutar el proyecto en tu entorno local, sigue los siguientes pasos:
 
-## License
+### Clonar el repositorio:
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Abre tu terminal y ejecuta el siguiente comando para clonar el repositorio:
+
+```bash
+git clone https://github.com/tu-usuario/tu-repositorio.git
+```
+Reemplaza tu-usuario y tu-repositorio con tus credenciales de GitHub y el nombre del repositorio, respectivamente.
+
+### Instalar las dependencias:
+
+Navega a la carpeta del proyecto y ejecuta el siguiente comando para instalar las dependencias necesarias:
+
+```bash
+cd tu-repositorio
+composer install
+```
+### Configurar el archivo .env:
+
+El proyecto utiliza PostgreSQL como base de datos. Debes configurar las credenciales de la base de datos en el archivo .env. Copia el archivo .env.example y renómbralo a .env. Luego, actualiza las siguientes variables con los detalles de tu base de datos:
+
+```
+makefile
+Copy code
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=nombre_de_tu_base_de_datos
+DB_USERNAME=tu_usuario_de_postgres
+DB_PASSWORD=tu_contraseña_de_postgres
+```
+### Ejecutar las migraciones:
+
+Antes de ejecutar la API, necesitas ejecutar las migraciones para crear las tablas en la base de datos. Utiliza el siguiente comando para realizar las migraciones:
+
+```bash
+php artisan migrate
+```
+Esto creará las tablas necesarias en la base de datos configurada.
+
+
+## Ejecutar Localmente
+
+Finalmente, inicia el servidor local para ejecutar la API. Utiliza el siguiente comando:
+
+```bash
+php -S localhost:8000 -t public
+```
+La API ahora estará accesible en http://localhost:8000.
+
+
+
+## API Reference
+
+#### Get all items
+
+```http
+  GET /api/items
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. Your API key |
+
+#### Get item
+
+```http
+  GET /api/items/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+#### add(num1, num2)
+
+Takes two numbers and returns the sum.
+
+
+## Documentación Swagger
+
+La documentación Swagger de la API está disponible en la ruta `/api/documentation`. Puedes acceder a la documentación utilizando tu navegador web y navegando a esa ruta una vez que hayas iniciado el servidor local.
+## Authors
+
+- [@yo para mi deber](https://www.github.com/nobuscar)
+
+
